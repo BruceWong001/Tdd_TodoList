@@ -1,0 +1,15 @@
+@TodoApi_HostAddress = http://localhost:5299
+
+GET {{TodoApi_HostAddress}}/api/todo/items
+Accept: application/json
+
+###
+POST {{TodoApi_HostAddress}}/api/todo/item
+Content-Type: application/json
+
+{
+  "title": "Task abc",
+  "startDate": "2023-01-09T00:00:00",
+  "endDate": "2023-01-10T00:00:00"
+}
+

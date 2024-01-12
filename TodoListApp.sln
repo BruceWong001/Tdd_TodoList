@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApi", "TodoApi\TodoApi.csproj", "{A1DAA5C3-1AC2-4E01-8CFE-B0EFFB8B0C39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApi.test", "TodoApi.test\TodoApi.test.csproj", "{023719CB-7DAD-40FC-AB85-340F2CB1C6A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoService.test", "TodoService.test\TodoService.test.csproj", "{FA8B943A-F898-4EA4-BDC0-FB4487DE8939}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1DAA5C3-1AC2-4E01-8CFE-B0EFFB8B0C39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1DAA5C3-1AC2-4E01-8CFE-B0EFFB8B0C39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1DAA5C3-1AC2-4E01-8CFE-B0EFFB8B0C39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1DAA5C3-1AC2-4E01-8CFE-B0EFFB8B0C39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{023719CB-7DAD-40FC-AB85-340F2CB1C6A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{023719CB-7DAD-40FC-AB85-340F2CB1C6A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{023719CB-7DAD-40FC-AB85-340F2CB1C6A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{023719CB-7DAD-40FC-AB85-340F2CB1C6A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA8B943A-F898-4EA4-BDC0-FB4487DE8939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA8B943A-F898-4EA4-BDC0-FB4487DE8939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA8B943A-F898-4EA4-BDC0-FB4487DE8939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA8B943A-F898-4EA4-BDC0-FB4487DE8939}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
