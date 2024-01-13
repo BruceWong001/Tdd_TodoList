@@ -1,0 +1,52 @@
+input {
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    outline: none;
+    width: 50%;
+    margin-left: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-indent: 10px;
+    border: 2px solid #007AFF; /* Change border color to match iOS Notes */
+}
+
+input::placeholder {
+    color: #999;
+    font-style: italic;
+    opacity: 0.5; /* Reduce opacity to make the watermark text less prominent */
+}
+
+li {
+    margin: 10px 0;
+    margin-left: 0px;
+    padding: 10px;
+    list-style: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width:90%;
+    background-color: #F9F9F9; /* Change background color to match iOS Notes */
+    font-size: 18px;
+    color: #333;
+}
+
+button {
+    background-color: #007AFF; /* Change button background color to match iOS Notes */
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #006BFF; /* Change button hover color to match iOS Notes */
+}
+/* FILEPATH: /Users/brucewong/workspace/code/devops training/todolist/todowebapp/src/todolist.css */
+.item-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+  }
+
