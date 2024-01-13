@@ -1,0 +1,20 @@
+version: '3'
+services:
+  todoapi:
+    build:
+      context: ./TodoAPI
+      dockerfile: Dockerfile
+    ports:
+      - 5299:5299
+    restart: always
+
+  todowebapp:
+    build:
+      context: ./TodoWebApp
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    restart: always
+    depends_on:
+      - todoapi
+
