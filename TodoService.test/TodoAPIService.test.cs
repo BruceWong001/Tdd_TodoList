@@ -83,5 +83,44 @@ public class TestApiService:IClassFixture<WebApplicationFactory<Program>>
         Assert.Equal(1,todoItems[0].Id);
         Assert.Equal(2,todoItems[1].Id);
     }
+    [Fact]
+    public async Task should_remove_one_todo_item_in_existing_list()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+        await client.PostAsync("/api/todo/item", new StringContent(
+            JsonSerializer.Serialize(new TodoDTO { Title = "Test1",StartDate=DateTime.Now,EndDate=DateTime.Now.AddHours(1)}),
+            Encoding.UTF8,
+            "application/json"));
+      
+       var response=  await client.PostAsync("/api/todo/item", new StringContent(
+            JsonSerializer.Serialize(new TodoDTO { Title = "Test2",StartDate=DateTime.Now ,EndDate = DateTime.Now.AddHours(1) }),
+            Encoding.UTF8,
+            "application/json"));   
+        TodoDTO item2=JsonSerializer.Deserialize<TodoDTO>(await response.Content.ReadAsStringAsync(),new JsonSerializerOptions{PropertyNameCaseInsensitive=true});
 
+
+        // Act
+        var jsonContent = new StringContent(JsonSerializer.Serialize(item2), Encoding.UTF8, "application/json");
+
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Delete,
+            RequestUri = new Uri("/api/todo/item/", UriKind.Relative),
+            Content = jsonContent
+        };
+
+        var del_response = await client.SendAsync(request);
+        
+        List<TodoDTO> todolist=JsonSerializer.Deserialize<List<TodoDTO>>(await del_response.Content.ReadAsStringAsync(),new JsonSerializerOptions{PropertyNameCaseInsensitive=true});
+       
+        
+        // Assert
+        del_response.EnsureSuccessStatusCode(); // Status Code 200-299
+        Assert.Equal(1,todolist.Count);
+        Assert.Equal("Test1",todolist[0].Title);
+
+    }
+    
+    
 }

@@ -44,5 +44,12 @@ public class TodoController : ControllerBase
         newItem.Save();
         return _mapper.Map<TodoDTO>(newItem);
     }
+    [HttpDelete("item")]
+    public List<TodoDTO> Delete(TodoDTO item)
+    {
+        var items= _itemCollection.Remove(_mapper.Map<TodoItem>(item));    
+        var ret=items.Select(todo=>_mapper.Map<TodoDTO>(todo)).ToList();
+        return ret;
+    }
 
 }

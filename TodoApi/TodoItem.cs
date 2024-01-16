@@ -41,6 +41,7 @@ public interface IRepository
 {
     TodoItem Save(TodoItem item);
     List<TodoItem> GetAllItems();
+    void Remove(TodoItem item);
 }
 
 public class ItemCollection
@@ -61,6 +62,13 @@ public class ItemCollection
     public TodoItem NewItem()
     {
         return new TodoItem(_todolistRepository);
+    }
+
+    public List<TodoItem> Remove(TodoItem item )
+    {
+        _todolistRepository.Remove(item);
+        
+        return _todolistRepository.GetAllItems();
     }
 }
 
@@ -116,10 +124,10 @@ public class MemoryRepository:IRepository
         return _items;
     }
 
-    public void Remove(TodoItem item1)
+    public void Remove(TodoItem item)
     {
         _items = cache.Get<List<TodoItem>>(key) ?? new List<TodoItem>();
-        var findedItem=_items.Find(match=>match.Id==item1.Id);
+        var findedItem=_items.Find(match=>match.Id==item.Id);
         if (findedItem!=null)
         {
             _items.Remove(findedItem);

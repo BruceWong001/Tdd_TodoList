@@ -116,8 +116,43 @@ public class todoservice
         Assert.Equal(sourceItem.EndDate, targetItem.EndDate);
         Assert.Equal(sourceItem.Title, targetItem.Title);
     }
+
+    [Fact]
+    public void should_remove_one_item_by_Id()
+    {
+        // Arrange
+        
+        var mockRepository=new Mock<IRepository>();
+        var todolist = new ItemCollection(mockRepository.Object);
+        var item1=todolist.NewItem();
+        item1.StartDate=DateTime.Now; item1.Title = "task1";
+        item1.Id=1;
+        var item2=todolist.NewItem();
+        item2.StartDate=DateTime.Now; item2.Title = "task2";
+        item2.Id = 2;
+        var item3=todolist.NewItem();
+        item3.StartDate=DateTime.Now; item3.Title = "task3";
+        item2.Id = 3;
+        var todoList = new List<TodoItem>
+        {
+            item1, item2, item3
+        };
+        mockRepository.Setup(x=>x.Save(It.IsAny<TodoItem>()));
+        mockRepository.Setup(x=>x.GetAllItems()).Returns(todoList);
+        mockRepository.Setup(x => x.Remove(It.IsAny<TodoItem>())).Callback<TodoItem>((task) =>
+        {
+            // 在这里添加你想在 Save 方法被调用时执行的代码
+            todoList.Remove(item2);
+        });
+        var items= new ItemCollection(mockRepository.Object);
+
+        // Act
+        var result = items.Remove(item2);
+
+        // Assert
+        Assert.Equal(2, result.Count());
+        Assert.Equal(item3.Title,result[1].Title);
+    }
     
     //should_update_existing_item
-  
-    //should_remove_one_item
 }
