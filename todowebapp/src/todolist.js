@@ -26,7 +26,7 @@ function TodoList() {
     })
       .then(response => response.json())
       .then(data => {
-        setTodos([...todos, data]);
+        setTodos([data,...todos ]);
         setInput('New Item');
         let currentnewDate=new Date();
         setStartDate(currentnewDate);
@@ -34,12 +34,16 @@ function TodoList() {
       });
   };
 
-  const handleDelete = (id) => {
-    fetch(`http://localhost:5299/api/todo/items/${id}`, {
-      method: 'DELETE'
-    })
-      .then(() => {
-        setTodos(todos.filter(todo => todo.id !== id));
+  const handleDelete = (todoItem) => {
+    fetch(`http://localhost:5299/api/todo/item/`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ Id:todoItem.id, Title: todoItem.title, StartDate: todoItem.startDate,EndDate:todoItem.endDate })
+    }).then(response => response.json())
+      .then(data => {
+        setTodos(data);
       });
   };
 
@@ -70,7 +74,7 @@ function TodoList() {
                 <strong>Title: </strong> {todo.title}<br/>
                 <strong>Start Date: </strong> {new Date(todo.startDate).toLocaleString()}<br/>
                 <strong>End Date: </strong> {new Date(todo.endDate).toLocaleString()}<br/>
-                <button onClick={() => handleDelete(todo.id)}>Delete</button>
+                <button onClick={() => handleDelete(todo)}>Delete</button>
                 <button onClick={() => handleUpdate(todo.id, 'New Name')}>Update</button>
               </div>
           </li>

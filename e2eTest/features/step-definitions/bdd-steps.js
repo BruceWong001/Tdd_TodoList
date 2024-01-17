@@ -5,6 +5,7 @@ const assert = require('assert');
 let browser;
 let page;
 
+
 Given('I open the browser', async () => {
   browser = await chromium.launch();
   page = await browser.newPage();
@@ -13,6 +14,7 @@ Given('I open the browser', async () => {
 When('I navigate to {string}', async (url) => {
   await page.goto(url);
 });
+
 
 Then('the page title should be {string}', async (expectedTitle) => {
   const pageTitle = await page.title();
@@ -35,7 +37,11 @@ When('I add a new {string}', async (newItem) => {
 
 Then('the new item should be there {string}', async (newItem) => {
 
-  const item_title = await page.getByRole('listitem').innerText();
+  //const item_title = await page.getByRole('listitem').innerText();
+  const item_title = await page.getByRole('listitem').first().innerText();
 
   assert(item_title.includes(newItem), `Item title should contain "${newItem}"`);
+  await page.getByRole('button', { name: 'Delete' }).first().click();
 });
+
+
